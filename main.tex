@@ -1,0 +1,71 @@
+\documentclass[]{beamer}
+\usepackage{pgfpages}
+
+\setbeameroption{show notes on second screen}
+
+% \graphicspath{{../thesis/Figures/}}
+
+% Include any extra LaTeX packages required
+\usepackage[]{biblatex}
+
+\usepackage{multicol}
+\usepackage{booktabs}
+
+\usetheme{metropolis}
+
+\title{}
+\author{Guillermo Echegoyen Blanco \\ Universidad de Educaci\'on a Distancia}
+%\institute{
+  %\vspace{1cm}
+  %\includegraphics[width=1.25cm]{logoFi.png}
+  %\hspace{7.5cm}
+  %\includegraphics[width=1cm]{logoupm.png}
+%}
+\date{\the\year}
+
+\def\mAlertSpace{\vspace{0.5em}}
+\def\mOrangeItem{\item[\textcolor{orange}{\textbullet}]}
+\newcommand{\mSlideTitle}{{{\color{gray}\secname}} \# \subsecname}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Overview}
+  \begin{multicols}{2}
+    \setbeamertemplate{section in toc}[sections numbered]
+    \tableofcontents[hideallsubsections]
+  \end{multicols}
+\end{frame}
+
+\section{Introduction}
+\subsection{Motivation}
+\begin{frame}{\mSlideTitle}
+  \begin{alertblock}{Autonomous Navigation}
+    \mAlertSpace%
+    Move a drone through an automatically-generated, obstacle-free trajectory to a given point.
+    \begin{itemize}
+      \item Planning
+      \item Localization
+      \item Mapping
+    \end{itemize}
+  \end{alertblock}
+\end{frame}
+
+\section{Experiments}
+\subsection{Experiment Details}
+\subsection{Data}
+\subsection{Discussion}
+
+\section{Conclusions}
+
+\begin{frame}[standout]
+  Questions?
+\end{frame}
+
+\section{References}
+\begin{frame}[allowframebreaks]{References}
+  \printbibliography%
+\end{frame}
+
+\end{document}
