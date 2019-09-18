@@ -1,27 +1,31 @@
 \documentclass[]{beamer}
 \usepackage{pgfpages}
 
-\setbeameroption{show notes on second screen}
-
-% \graphicspath{{../thesis/Figures/}}
+% \setbeameroption{show notes on second screen}
 
 % Include any extra LaTeX packages required
-\usepackage[]{biblatex}
+\usepackage[
+  backend=bibtex,
+  style=alphabetic,
+  citestyle=authoryear
+]{biblatex}
+
+\addbibresource{./library.bib}
 
 \usepackage{multicol}
 \usepackage{booktabs}
 
 \usetheme{metropolis}
 
-\title{}
-\author{Guillermo Echegoyen Blanco \\ Universidad de Educaci\'on a Distancia}
-%\institute{
-  %\vspace{1cm}
-  %\includegraphics[width=1.25cm]{logoFi.png}
-  %\hspace{7.5cm}
-  %\includegraphics[width=1cm]{logoupm.png}
-%}
-\date{\the\year}
+\title{Benchmarking Entity Linking for Question Answering over Knowledge Graphs}
+\author{Guillermo Echegoyen Blanco \\ Universidad Nacional de Educaci\'on a Distancia \\
+gblanco \textbf{at} lsi.uned.es}
+\institute{
+  \vspace{1cm}
+  \includegraphics[width=1.25cm]{./figures/UNED.jpeg}
+}
+\date{}
+% \date{\the\year}
 
 \def\mAlertSpace{\vspace{0.5em}}
 \def\mOrangeItem{\item[\textcolor{orange}{\textbullet}]}
@@ -32,36 +36,103 @@
 \maketitle
 
 \begin{frame}{Overview}
-  \begin{multicols}{2}
-    \setbeamertemplate{section in toc}[sections numbered]
-    \tableofcontents[hideallsubsections]
-  \end{multicols}
+  \setbeamertemplate{section in toc}[sections numbered]
+  \tableofcontents[hideallsubsections]
 \end{frame}
 
 \section{Introduction}
-\subsection{Motivation}
-\begin{frame}{\mSlideTitle}
-  \begin{alertblock}{Autonomous Navigation}
-    \mAlertSpace%
-    Move a drone through an automatically-generated, obstacle-free trajectory to a given point.
+  \begin{frame}{\mSlideTitle}
+    \begin{alertblock}{Entity Linking}
+      \mAlertSpace%
+      \textbf{Def:} Link parts of a Natural Language passage to their corresponding node in a Knowledge Graph. Usually comprises:
+      \begin{itemize}
+        \item Recognize the entity mention in the text.
+        \item Disambiguate the mention.
+      \end{itemize}
+    \end{alertblock}
+  \end{frame}
+  \note{%
     \begin{itemize}
-      \item Planning
-      \item Localization
-      \item Mapping
+      \item We frame it under a QA Task over a KG, although can be done anywhere.
     \end{itemize}
-  \end{alertblock}
-\end{frame}
+  }
+
+  \begin{frame}{\mSlideTitle}
+    \begin{alertblock}{Motivation}
+      \begin{itemize}
+        \item Asses the impact of Entity Linking on a Question Answering task over a KG.
+        \item Actual collections for QA are easy for EL.
+      \end{itemize}
+    \end{alertblock}
+  \end{frame}
+  \note{%
+    \begin{itemize}
+      \item It is important because linking to a certain node will restrict the whole search process inside the KG. So it's impact can be decisive.
+      \item More about the easyness of each dataset on the experiments section.
+    \end{itemize}
+  }
+
+\section{Outcomes}
+  \begin{frame}{\mSlideTitle}
+    \begin{alertblock}{Our main contributions are:}
+      \begin{itemize}
+        \item QA Datasets characterization
+        \item Semi-automatic method to generate EL dataset.
+        \item Release large benchmark dataset and baseline for EL in QA.
+      \end{itemize}
+    \end{alertblock}      
+  \end{frame}
 
 \section{Experiments}
-\subsection{Experiment Details}
+  \begin{frame}{\mSlideTitle}
+    \begin{alertblock}{Datasets}
+      \begin{itemize}
+        \item QALD \{1-4\} \cite{Unger2014}) $\le$ 200 QA pairs each
+        \item LC-QuAD (\cite{trivedi2017lc}) 5K QA pairs
+      \end{itemize}
+    \end{alertblock}
+    \begin{alertblock}{Example}
+      \mAlertSpace
+      \textbf{Q:} List all episodes of the first season of the HBO television series \textbf{The Sopranos} \\
+      {\centering
+        $\Downarrow$ \par
+      }
+      \textbf{EL:} \textit{http ://dbpedia.org/resource/The\_Sopranos}
+    \end{alertblock}
+  \end{frame}
+  \note{%
+    \begin{itemize}
+      \item There are other mentions to link (series, sesason Number) but correspond to classes.
+    \end{itemize}
+  }
+
+  \begin{frame}{\mSlideTitle}
+    \begin{alertblock}{Difficulty}
+      \begin{itemize}
+        \item Given the Question, how easy is the EL?
+      \end{itemize}
+      \input{tables/dataset_cases.tex}
+    \end{alertblock}
+  \end{frame}
+  \note{%
+    \begin{itemize}
+      \item Numbers are from Unique Entities.
+    \end{itemize}
+  }
+
 \subsection{Data}
 \subsection{Discussion}
 
 \section{Conclusions}
-
-\begin{frame}[standout]
-  Questions?
-\end{frame}
+  \begin{frame}[standout]
+    Questions?
+  \end{frame}
+  \note{%
+    Possible questions:
+    \begin{itemize}
+      \item Have you tried this with Class linking instead of Entity?
+    \end{itemize}
+  }
 
 \section{References}
 \begin{frame}[allowframebreaks]{References}
