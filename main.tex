@@ -14,6 +14,7 @@
 
 \usepackage{multicol}
 \usepackage{booktabs}
+\usepackage{xcolor}
 
 \usetheme{metropolis}
 
@@ -28,8 +29,9 @@ gblanco \textbf{at} lsi.uned.es}
 % \date{\the\year}
 
 \def\mAlertSpace{\vspace{0.5em}}
-\def\mOrangeItem{\item[\textcolor{orange}{\textbullet}]}
-\newcommand{\mSlideTitle}{{{\color{gray}\secname}} \# \subsecname}
+\def\mOrangeItem{\item[\textcolor{mLightBrown}{\textbullet}]}
+\newcommand{\mSlideTitle}{{{\secname}}}
+% \newcommand{\mSlideTitle}{{{\color{gray}\secname}} \# \subsecname}
 
 \begin{document}
 
@@ -44,7 +46,7 @@ gblanco \textbf{at} lsi.uned.es}
   \begin{frame}{\mSlideTitle}
     \begin{alertblock}{Entity Linking}
       \mAlertSpace%
-      \textbf{Def:} Link parts of a Natural Language passage to their corresponding node in a Knowledge Graph. Usually comprises:
+      \textbf{Def:} Link parts of a Natural Language passage to it's corresponding node in a Knowledge Graph. Usually comprises:
       \begin{itemize}
         \item Recognize the entity mention in the text.
         \item Disambiguate the mention.
@@ -61,7 +63,7 @@ gblanco \textbf{at} lsi.uned.es}
     \begin{alertblock}{Motivation}
       \begin{itemize}
         \item Asses the impact of Entity Linking on a Question Answering task over a KG.
-        \item Actual collections for QA are easy for EL.
+        \item Actual collections for QA are easy for Entity Linking.
       \end{itemize}
     \end{alertblock}
   \end{frame}
@@ -109,7 +111,7 @@ gblanco \textbf{at} lsi.uned.es}
   \begin{frame}{\mSlideTitle}
     \begin{alertblock}{Difficulty}
       \begin{itemize}
-        \item Given the Question, how easy is the EL?
+        \item Given the Question, how easy is the Entity Linking?
       \end{itemize}
       \input{tables/dataset_cases.tex}
     \end{alertblock}
@@ -120,10 +122,64 @@ gblanco \textbf{at} lsi.uned.es}
     \end{itemize}
   }
 
-\subsection{Data}
-\subsection{Discussion}
+  \begin{frame}{\mSlideTitle}
+    \textcolor{mLightBrown}{\textbf{Objective:}} Complex dataset for Entity Linking
+    \begin{alertblock}{Strategy}
+      \begin{enumerate}
+        \item Develop baseline to detect as much mentions as possible
+        \item Remove items from collection
+      \end{enumerate}
+    \end{alertblock}
+    \begin{alertblock}{Baselines}
+      \begin{itemize}
+        \item Trigram based mention detection
+        \item Distance based mention detection
+      \end{itemize}
+    \end{alertblock}
+  \end{frame}
+  \note{%
+    Distance metric: Levenstein
+    \begin{itemize}
+      \item Trigram: Trigram window slide minimizing distance
+      \item Distance: Maximum span of text minimizing distance
+    \end{itemize}
+  }
 
-\section{Conclusions}
+\section{Results}
+  \begin{frame}{\mSlideTitle}
+    \begin{alertblock}{Released Datasets}
+      \begin{itemize}
+        \item \textbf{QALD-\{1-4\}-EL}: QALD-X version for EL $\le 45$ samples each.
+        \item \textbf{LC-QuAD-EL}: LC-QuAD version for EL $\le 1.3K$ samples.
+        \item \textbf{C-EL4QA}: Compilation of EL versions $\le 1.5K$ samples.
+      \end{itemize}
+      \mAlertSpace
+      Baseline removed 70\% of the dataset in the worst case!
+    \end{alertblock}
+  \end{frame}
+  \note{%
+    \begin{itemize}
+      \item QALD datasets shrink by a 50\%.
+      \item LCQUAD shrinks by a 70\%
+    \end{itemize}
+    Obviously this happens because the questions are automatically generated.
+  }
+
+\section{Discussion}
+  \begin{frame}{\mSlideTitle}
+    \begin{alertblock}{Research Questions}
+      \begin{itemize}
+        \item If Entity Linking were more difficult, how QA system would perform?
+        \item Datasets should be created more carefully.
+      \end{itemize}
+    \end{alertblock}
+  \end{frame}
+  \note{%
+    \begin{itemize}
+      \item Systems like the ones on LC-QuAD paper (Aqua QA ...) ToDo := Extract refs
+    \end{itemize}
+  }
+
   \begin{frame}[standout]
     Questions?
   \end{frame}
