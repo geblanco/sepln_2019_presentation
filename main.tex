@@ -15,12 +15,18 @@
 \usepackage{multicol}
 \usepackage{booktabs}
 \usepackage{xcolor}
+\usepackage{times}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usetikzlibrary{arrows.meta,shapes}
 
 \usetheme{metropolis}
 
 \title{Benchmarking Entity Linking for Question Answering over Knowledge Graphs}
-\author{Guillermo Echegoyen Blanco \\ Universidad Nacional de Educaci\'on a Distancia \\
-gblanco \textbf{at} lsi.uned.es}
+\author{\textbf{Guillermo Echegoyen Blanco} \\ \'Alvaro Rodrigo \\ Anselmo Pe\~nas \\ 
+\{gblanco, alvarory, anselmo\} \textbf{at} lsi.uned.es \\ \\
+Universidad Nacional de Educaci\'on a Distancia}
 \institute{
   \vspace{1cm}
   \includegraphics[width=1.25cm]{./figures/UNED.jpeg}
@@ -30,10 +36,12 @@ gblanco \textbf{at} lsi.uned.es}
 
 \def\mAlertSpace{\vspace{0.5em}}
 \def\mOrangeItem{\item[\textcolor{mLightBrown}{\textbullet}]}
-\newcommand{\mSlideTitle}{{{\secname}}}
-% \newcommand{\mSlideTitle}{{{\color{gray}\secname}} \# \subsecname}
+\newcommand{\mSlideTitle}{{{\color{gray}\secname}} \# \subsecname}
 
 \begin{document}
+
+\tikzstyle{every picture}+=[remember picture]
+\everymath{\displaystyle}
 
 \maketitle
 
@@ -43,7 +51,7 @@ gblanco \textbf{at} lsi.uned.es}
 \end{frame}
 
 \section{Introduction}
-  \begin{frame}{\mSlideTitle}
+  \begin{frame}{\secname}
     \begin{alertblock}{Entity Linking}
       \mAlertSpace%
       \textbf{Def:} Link parts of a Natural Language passage to it's corresponding node in a Knowledge Graph. Usually comprises:
@@ -52,6 +60,40 @@ gblanco \textbf{at} lsi.uned.es}
         \item Disambiguate the mention.
       \end{itemize}
     \end{alertblock}
+    \mAlertSpace
+    \textbf{Q:} List all episodes of the
+      \tikz[baseline]{\node[anchor=base] (classt1){%
+        $\overbrace{\text{first season}}^\text{\scriptsize dbo:seasonNumber = 1}$
+      };}
+    of the HBO \\
+    television 
+      \tikz[baseline]{\node[anchor=base] (classt2){%
+        $\underbrace{\text{series}}_\text{\scriptsize dbo:series}$ 
+      };}
+      \tikz[baseline]{\node[anchor=base] (entityt1){%
+        $\underbrace{\text{The Sopranos}}_\text{\scriptsize dbr:The\_Sopranos}$
+      };}
+    \\
+    \mAlertSpace
+    \begin{tabular}{lr}
+      {\scriptsize
+        \textit{dbo = http://dbpedia.org/ontology}
+      } &
+      \hspace{4cm} 
+      {%
+        \tikz[baseline]{\node[anchor=base] (entityf1) {entity};}
+      } \\
+      {\scriptsize
+        \textit{dbr = http://dbpedia.org/resource}
+      } & {%
+        \tikz[baseline]{\node[anchor=base] (classf1) {class};}
+      } \\
+    \end{tabular}
+    \begin{tikzpicture}[overlay]
+      \path[-{Latex[width=2mm]}] (classf1.east) edge [bend right=90] (classt1);
+      \path[-{Latex[width=2mm]}] (classf1) edge [bend left=15] (classt2);
+      \path[-{Latex[width=2mm]}] (entityf1) edge [bend left] (entityt1);
+    \end{tikzpicture}
   \end{frame}
   \note{%
     \begin{itemize}
@@ -59,7 +101,7 @@ gblanco \textbf{at} lsi.uned.es}
     \end{itemize}
   }
 
-  \begin{frame}{\mSlideTitle}
+  \begin{frame}{\secname}
     \begin{alertblock}{Motivation}
       \begin{itemize}
         \item Asses the impact of Entity Linking on a Question Answering task over a KG.
@@ -75,7 +117,7 @@ gblanco \textbf{at} lsi.uned.es}
   }
 
 \section{Outcomes}
-  \begin{frame}{\mSlideTitle}
+  \begin{frame}{\secname}
     \begin{alertblock}{Our main contributions are:}
       \begin{itemize}
         \item QA Datasets characterization
@@ -86,7 +128,7 @@ gblanco \textbf{at} lsi.uned.es}
   \end{frame}
 
 \section{Experiments}
-  \begin{frame}{\mSlideTitle}
+  \begin{frame}{\secname}
     \begin{alertblock}{Datasets}
       \begin{itemize}
         \item QALD \{1-4\} \cite{Unger2014}) $\le$ 200 QA pairs each
@@ -95,11 +137,8 @@ gblanco \textbf{at} lsi.uned.es}
     \end{alertblock}
     \begin{alertblock}{Example}
       \mAlertSpace
-      \textbf{Q:} List all episodes of the first season of the HBO television series \textbf{The Sopranos} \\
-      {\centering
-        $\Downarrow$ \par
-      }
-      \textbf{EL:} \textit{http ://dbpedia.org/resource/The\_Sopranos}
+      \textbf{Q:} List all episodes of the first season of the HBO television series
+      $\underbrace{\text{The Sopranos}}_\text{\scriptsize dbr:The\_Sopranos}$
     \end{alertblock}
   \end{frame}
   \note{%
@@ -108,6 +147,7 @@ gblanco \textbf{at} lsi.uned.es}
     \end{itemize}
   }
 
+\subsection{Characterization}
   \begin{frame}{\mSlideTitle}
     \begin{alertblock}{Difficulty}
       \begin{itemize}
@@ -122,6 +162,7 @@ gblanco \textbf{at} lsi.uned.es}
     \end{itemize}
   }
 
+\subsection{Automatic Generation}
   \begin{frame}{\mSlideTitle}
     \textcolor{mLightBrown}{\textbf{Objective:}} Complex dataset for Entity Linking
     \begin{alertblock}{Strategy}
@@ -146,6 +187,7 @@ gblanco \textbf{at} lsi.uned.es}
   }
 
 \section{Results}
+\subsection{Dataset Release}
   \begin{frame}{\mSlideTitle}
     \begin{alertblock}{Released Datasets}
       \begin{itemize}
@@ -166,7 +208,7 @@ gblanco \textbf{at} lsi.uned.es}
   }
 
 \section{Discussion}
-  \begin{frame}{\mSlideTitle}
+  \begin{frame}{\secname}
     \begin{alertblock}{Research Questions}
       \begin{itemize}
         \item If Entity Linking were more difficult, how QA system would perform?
