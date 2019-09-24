@@ -87,7 +87,6 @@
     \begin{alertblock}{Motivation}
       \begin{itemize}
         \item Lots of QA systems do perform an EL step with good results.
-        \item Is the task easy or datasets are?
         \item Asses impact of EL Task on QA systems over KG.
         \item Actual collections for QA are easy for Entity Linking.
       \end{itemize}
@@ -147,6 +146,7 @@
     \end{alertblock}
   \end{frame}
   \note{%
+    ToDo := How is each dataset created?
     \begin{itemize}
       \item Numbers are from Unique Entities.
     \end{itemize}
@@ -170,21 +170,21 @@
   \note{%
     Distance metric: Levenstein
     \begin{itemize}
-      \item Trigram: Trigram window slide minimizing distance
-      \item Distance: Maximum span of text minimizing distance
+      \item Trigram: Trigram window slide minimizing distance.
+      \item Distance: Maximum span of text minimizing distance, same number of tokens as the database entity.
     \end{itemize}
   }
 
 \section{Results}
   \begin{frame}{\mShortTitle}
-    Developed method removed between 50\% and 70\% of each dataset.
     \mAlertSpace
     \begin{alertblock}{Released Datasets}
-      \begin{itemize}
-        \item \textbf{QALD-\{1-4\}-EL}: QALD-X version for EL $\le 45$ samples each.
-        \item \textbf{LC-QuAD-EL}: LC-QuAD version for EL $\le 1.3K$ samples.
-        \item \textbf{C-EL4QA}: Complex compilation of EL versions $\le 1.5K$ samples.
-      \end{itemize}
+      % \begin{itemize}
+      %   \item \textbf{QALD-\{1-4\}-EL}: QALD-X version for EL $\le 45$ samples each.
+      %   \item \textbf{LC-QuAD-EL}: LC-QuAD version for EL $\le 1.3K$ samples.
+      %   \item \textbf{C-EL4QA}: Complex compilation of EL versions $\le 1.5K$ samples.
+      % \end{itemize}
+      \input{tables/composed_datasets_details.tex}
     \end{alertblock}
   \end{frame}
   \note{%
@@ -200,8 +200,8 @@
     \begin{alertblock}{Our main contributions are:}
       \begin{itemize}
         \item QA Datasets characterization
-        \item Semi-automatic method to generate EL dataset.
-        \item Release large benchmark dataset and baseline for EL in QA.
+        \item Semi-automatic method to generate complex EL datasets.
+        \item Release large benchmark dataset and baseline for EL in QA (\href{https://github.com/m0n0l0c0/benchmarking_entity_linking/blob/master/datasets/Complex-EL4QA.json}{url})
       \end{itemize}
     \end{alertblock}      
   \end{frame}
