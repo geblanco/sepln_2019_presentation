@@ -88,18 +88,8 @@
       \begin{itemize}
         \item Lots of QA systems do perform an EL step with good results.
         \item Asses impact of EL Task on QA systems over KG.
-        \item Actual collections for QA are easy for Entity Linking.
       \end{itemize}
     \end{alertblock}
-    \mAlertSpace
-    \input{examples/q_sopranos_short.tex}
-    \hfill
-    \tikz[baseline]{\node[anchor=base] (src1){%
-        \textbf{replace " " $\rightarrow$ "\_"}
-    };}
-    \begin{tikzpicture}[overlay]
-      \path[-{Latex[width=2mm]}] (src1.west) edge [bend left] (dst1.south);
-    \end{tikzpicture}
   \end{frame}
   \note{%
     \begin{itemize}
@@ -109,9 +99,8 @@
     \end{itemize}
   }
 
-\section{Benchmark}
+\section{Characterization}
   \begin{frame}{\mShortTitle}
-    \textcolor{mLightBrown}{\textbf{Objective:}} Complex dataset for Entity Linking
     \begin{alertblock}{Input Datasets}
       \begin{itemize}
         \item QALD \{1-4\} \cite{Unger2014}) $\le$ 200 QA pairs each
@@ -136,8 +125,7 @@
     \end{alertblock}
   \end{frame}
 
-\subsection{Characterization}
-  \begin{frame}{\mSlideTitle}
+  \begin{frame}{\mShortTitle}
     \begin{alertblock}{Difficulty?}
       \begin{itemize}
         \item Given the Question, how easy is the Entity Linking?
@@ -151,9 +139,25 @@
       \item Numbers are from Unique Entities.
     \end{itemize}
   }
+  \begin{frame}{\mShortTitle}
+    \begin{alertblock}{Problem}
+      \begin{itemize}
+          \item Actual collections for QA are easy for Entity Linking.
+      \end{itemize}
+      \input{examples/q_sopranos_short.tex}
+      \hfill
+      \tikz[baseline]{\node[anchor=base] (src1){%
+          \textbf{replace " " $\rightarrow$ "\_"}
+      };}
+      \begin{tikzpicture}[overlay]
+        \path[-{Latex[width=2mm]}] (src1.west) edge [bend left] (dst1.south);
+      \end{tikzpicture}
+    \end{alertblock}
+  \end{frame}
 
-\subsection{Automatic Generation}
-  \begin{frame}{\mSlideTitle}
+\section{Automatic Generation}
+  \begin{frame}{\mShortTitle}
+    \textcolor{mLightBrown}{\textbf{Objective:}} Complex dataset for Entity Linking
     \begin{alertblock}{Strategy}
       \begin{enumerate}
         \item Develop method to detect easy mentions
@@ -195,6 +199,26 @@
     Obviously this happens because the questions are automatically generated.
   }
 
+\section{Conclusions \& Future Work}
+  \begin{frame}{\mShortTitle}
+    \begin{alertblock}{Conclusions}
+      \begin{itemize}
+        \item We found QA that collections do not really tackle the EL problem.
+        \item QA Systems go for automated solutions
+      \end{itemize}
+    \end{alertblock}
+    \begin{alertblock}{Open Questions}
+      \begin{itemize}
+        \item If Entity Linking were more difficult, how QA system would perform?
+      \end{itemize}
+    \end{alertblock}
+  \end{frame}
+  \note{%
+    \begin{itemize}
+      \item Systems like the ones on LC-QuAD paper (Aqua QA ...) ToDo := Extract refs
+    \end{itemize}
+  }
+
 \section{Outcomes}
   \begin{frame}{\mShortTitle}
     \begin{alertblock}{Our main contributions are:}
@@ -211,37 +235,16 @@
     \end{itemize}
   }
 
-\section{Conclusions \& Future Work}
-  \begin{frame}{\mShortTitle}
-    \begin{alertblock}{Conclusions}
-      \begin{itemize}
-        \item We found QA collections to be very easy
-        \item QA Systems go for automated solutions
-      \end{itemize}
-    \end{alertblock}
-    \begin{alertblock}{Research Questions}
-      \begin{itemize}
-        \item If Entity Linking were more difficult, how QA system would perform?
-        \item How can we create more difficult Entity Linking collections?
-      \end{itemize}
-    \end{alertblock}
-  \end{frame}
-  \note{%
-    \begin{itemize}
-      \item Systems like the ones on LC-QuAD paper (Aqua QA ...) ToDo := Extract refs
-    \end{itemize}
-  }
-
-  \begin{frame}[standout]
-    Thank you!\\
-    Questions?
-  \end{frame}
-  \note{%
-    Possible questions:
-    \begin{itemize}
-      \item Have you tried this with Class linking instead of Entity?
-    \end{itemize}
-  }
+\begin{frame}[standout]
+  Thank you!\\
+  Questions?
+\end{frame}
+\note{%
+  Possible questions:
+  \begin{itemize}
+    \item Have you tried this with Class linking instead of Entity?
+  \end{itemize}
+}
 
 \section{References}
   \begin{frame}[allowframebreaks]{References}
