@@ -1,7 +1,7 @@
 \documentclass[]{beamer}
 \usepackage{pgfpages}
 
-% \setbeameroption{show notes on second screen}
+\setbeameroption{show notes on second screen}
 
 % Include any extra LaTeX packages required
 \usepackage[
@@ -134,10 +134,15 @@
     \end{alertblock}
   \end{frame}
   \note{%
-    ToDo := How is each dataset created?
     \begin{itemize}
-      \item Numbers are from Unique Entities.
+      \item Numbers are from Unique Entities
     \end{itemize}
+    QALD-4
+    Tools: gAnswer (Zou), CASIA (Shizhu), POMELO (Hamon)
+    Creation: Taken from QALD-3 and added more questions manually, QALD-3 was manually crafted.
+    Use until QALD-4 beacuse 5 and 6th versions are more into multilang and were collected by prunning QALD-{1-4}. QALD-7 features only 214 questions.
+    LC-QuAD
+    Creation: Entity seed list -> subgraph generation -> sql and question template fill ->  manual correction and review
   }
   \begin{frame}{\mShortTitle}
     \begin{alertblock}{Problem}
